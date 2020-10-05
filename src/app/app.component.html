@@ -1,0 +1,88 @@
+<div class="base">
+  <div class="main">
+    <div>
+      <input class="title input" [(ngModel)]="location" placeholder="Адрес" (change)="onTitleChange()" />
+    </div>
+    <div class="color card " *ngIf="visible">
+      <div class="center">
+        <div class="title">
+          Погода сейчас в {{weather?.current?.stringTime}}
+        </div>
+        <div>
+          <div class="grd inline width">
+            {{weather?.current?.temp}}°
+          </div>
+          <div class="inline width">
+            <img src={{weather?.current?.weather[0].icon}} alt="weather_picture">
+          </div>
+          <div class="inline width">
+            {{weather?.current?.weather[0].description}}
+          </div>
+        </div>
+        <div>
+          <div class="inline">
+            <img src="assets/icons/wind.svg" width="24" height="24">
+            <label> {{weather?.current?.wind_speed}} м/c</label>
+          </div>
+          <div class="inline">
+            <img src="assets/icons/pressure.svg" width="24" height="24">
+            <label> {{weather?.current?.pressure}} мм рт. ст.</label>
+          </div>
+          <div class="inline">
+            <img src="assets/icons/humidity.svg" width="24" height="24">
+            <label> {{weather?.current?.humidity}}%</label>
+          </div>
+        </div>
+      </div>
+      <hr>
+      <div>
+        <ul class="span">
+          <li class="fontSmall" *ngFor="let item of weather?.hourly">
+            <div class="center">{{item.stringTime}}</div>
+            <img class="center" src={{item.weather[0].icon}} width="38" height="38">
+            <div class="center">{{item.temp}}°</div>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="color card " *ngIf="visible">
+      <ul class="vList">
+        <li *ngFor="let item of weather?.daily">
+          <div class="center ">
+            <div class="title">
+              {{item?.stringTime}}
+            </div>
+            <div>
+              <div class="grd inline width">
+                {{item?.temp?.day}}°
+              </div>
+              <div class="inline width">
+                <img src={{item?.weather[0].icon}} alt="weather_picture">
+              </div>
+              <div class="inline width">
+                {{item?.weather[0].description}}
+              </div>
+            </div>
+            <div>
+              <div>
+                <div class="inline">
+                  <img src="assets/icons/wind.svg" width="24" height="24">
+                  <label> {{item?.wind_speed}} м/c</label>
+                </div>
+                <div class="inline">
+                  <img src="assets/icons/pressure.svg" width="24" height="24">
+                  <label> {{item?.pressure}} мм рт. ст.</label>
+                </div>
+                <div class="inline">
+                  <img src="assets/icons/humidity.svg" width="24" height="24">
+                  <label> {{item?.humidity}}%</label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <hr>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
